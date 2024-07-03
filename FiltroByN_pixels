@@ -1,0 +1,23 @@
+let imgAkali;
+
+function preload(){
+  imgAkali = loadImage('pantheon.jpg');
+}
+
+function setup(){
+  createCanvas(1920, 1080);
+  imgAkali.loadPixels();
+  let numPixels = 4 * imgAkali.width * imgAkali.height;
+  for(let i = 0; i < numPixels; i +=4){
+    let gris = (imgAkali.pixels[i] + imgAkali.pixels[i+1] +imgAkali.pixels[i+2] + imgAkali.pixels[i]+3) / 4;
+    imgAkali.pixels[i] = gris;
+    imgAkali.pixels[i+1] = gris;
+    imgAkali.pixels[i+2] = gris;
+    imgAkali.pixels[i+3] = gris;
+  }
+  imgAkali.updatePixels();
+  image(imgAkali,0,0);
+}
+
+
+
