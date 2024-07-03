@@ -1,0 +1,24 @@
+let img;
+let gris;
+
+function preload(){
+  img = loadImage('akali.jpg');
+}
+
+function setup() {
+  createCanvas(1920, 1080);
+  for(let y=0; y < img.height; y++){
+    for(let x=0; x<img.width; x++){
+      let c = img.get(x,y);
+      gris = (max(c[0], c[1], c[2]) + min(c[0], c[1], c[2])) / 2
+      img.set(x,y,gris);       
+       
+     }
+    }
+  img.updatePixels();
+  image(img,0,0);
+}
+
+
+    
+    //Gray = ( Max(Red, Green, Blue) + Min(Red, Green, Blue) ) / 2
