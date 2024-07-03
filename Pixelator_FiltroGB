@@ -1,0 +1,34 @@
+let img;
+
+function preload() {
+  img = loadImage('sample_bfe761110a7cb4d3c7d45a353f9fc0a4.jpg');
+}
+
+function setup() {
+  createCanvas(1920, 1080);
+  let r = 2;
+  for (let x = 0; x < img.width; x += r) {
+    for (let y = 0; y < img.height; y += r) {
+      let c = img.get(x, y);
+      let shine = (c[0]+c[1]+c[2])/3;
+      if (shine < 60) {
+        c = color("#081820")
+      } else if (shine >= 60 && shine < 120) {
+        c = color("#346856")
+      } else if (shine >= 120 && shine < 180) {
+        c = color("#88c070")
+      } else {
+        c = color("#e0f8d0")
+      }
+      for (let i = 0; i < r; i++) {
+        for (let j = 0; j < r; j++) {
+          let auxX = x + j;
+          let auxY = y + i;
+          img.set(auxX, auxY, c);
+        }
+      }
+    }
+  }
+  img.updatePixels();
+  image(img,0,0);
+}
